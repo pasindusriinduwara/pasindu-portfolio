@@ -1,0 +1,10 @@
+{
+  "description": "Create a stunning online portfolio that showcases your CV and unique design skills, helping professionals stand out to potential employers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

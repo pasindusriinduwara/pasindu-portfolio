@@ -1,0 +1,18 @@
+[
+  {
+    "id": "af6e452a-db18-414b-ac70-ea9e63a39b61",
+    "name": "Alex Rivera",
+    "email": "alex.rivera@techfirm.com",
+    "subject": "Internship Offer",
+    "message": "Hi Pasindu, we would love to connect with you!",
+    "createdAt": "2026-09-04T19:16:10.264Z"
+  },
+  {
+    "id": "08ffc142-d560-41ef-905d-e5f465fd3242",
+    "name": "Antigravity Reviewer",
+    "email": "reviewer@antigravity.ai",
+    "subject": "Internship Inquiry",
+    "message": "Hello Pasindu, impressive portfolio! Let's connect.",
+    "createdAt": "2026-09-04T19:43:33.036Z"
+  }
+]
