@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const SECTIONS = [
   { id: "home", label: "Home" },
@@ -12,6 +13,11 @@ const SECTIONS = [
 
 export default function NavDots() {
   const [active, setActive] = useState(0);
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   useEffect(() => {
     const handleScroll = () => {

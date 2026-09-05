@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { PROJECTS } from "@/data/portfolio";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { ArrowUpRight, CheckCircle2, Code2 } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
 
 export default function Projects() {
+  const { projects } = usePortfolio();
   const [activeProject, setActiveProject] = useState(0);
 
-  const proj = PROJECTS[activeProject];
+  const proj = projects[activeProject] || projects[0];
+
+  if (!proj) return null;
 
   return (
     <section
@@ -29,7 +32,7 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-12 border border-white/10 rounded-2xl overflow-hidden bg-[#0a0a14]/60 backdrop-blur-md shadow-2xl">
           {/* TAB SELECTOR COLUMN */}
           <div className="md:col-span-4 border-b md:border-b-0 md:border-r border-white/10 bg-white/[0.01]">
-            {PROJECTS.map((p, idx) => {
+            {projects.map((p, idx) => {
               const isSelected = activeProject === idx;
               return (
                 <button

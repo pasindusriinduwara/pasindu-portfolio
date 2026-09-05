@@ -1,0 +1,210 @@
+{
+  "personalInfo": {
+    "name": "Pasindu Sri Induwara Madhushan",
+    "shortName": "Pasindu Sri Induwara ",
+    "title": "Full-Stack Software Engineer & IT Undergraduate",
+    "tagline": "IT undergrad at University of Moratuwa building full-stack web apps, blockchain integrations, and IoT systems.",
+    "location": "Colombo, Sri Lanka",
+    "email": "ipasindusri@gmail.com",
+    "phone": "+94 726 642 993",
+    "linkedin": "https://linkedin.com/in/pasindusri",
+    "github": "https://github.com/pasindusri",
+    "internshipStatus": "Available for internship",
+    "achievement": "Full-Stack Web, XRPL Blockchain & IoT Systems",
+    "languages": [
+      "English",
+      "Sinhala"
+    ],
+    "avatar": "/images/profile.jpg",
+    "resumeUrl": "/api/resume"
+  },
+  "skills": [
+    {
+      "label": "TypeScript",
+      "level": 89,
+      "category": "frontend"
+    },
+    {
+      "label": "React / Next.js",
+      "level": 88,
+      "category": "frontend"
+    },
+    {
+      "label": "Spring Boot",
+      "level": 82,
+      "category": "backend"
+    },
+    {
+      "label": "Node.js",
+      "level": 85,
+      "category": "backend"
+    },
+    {
+      "label": "PostgreSQL",
+      "level": 78,
+      "category": "database"
+    },
+    {
+      "label": "Java",
+      "level": 80,
+      "category": "backend"
+    },
+    {
+      "label": "Tailwind CSS",
+      "level": 92,
+      "category": "frontend"
+    },
+    {
+      "label": "XRPL / Web3",
+      "level": 70,
+      "category": "blockchain"
+    }
+  ],
+  "stack": [
+    "Java",
+    "TypeScript",
+    "JavaScript",
+    "C",
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Node.js",
+    "Express.js",
+    "Spring Boot",
+    "Spring Security",
+    "PostgreSQL",
+    "MySQL",
+    "Supabase",
+    "Git",
+    "GitHub",
+    "Cloudinary",
+    "Web3Auth",
+    "XRPL"
+  ],
+  "categorizedStack": {
+    "languages": [
+      "Java",
+      "TypeScript",
+      "JavaScript",
+      "C"
+    ],
+    "frontend": [
+      "React",
+      "Next.js",
+      "Tailwind CSS"
+    ],
+    "backend": [
+      "Node.js",
+      "Express.js",
+      "Spring Boot",
+      "Spring Security"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "MySQL",
+      "Supabase"
+    ],
+    "tools": [
+      "Git",
+      "GitHub",
+      "Cloudinary",
+      "Web3Auth",
+      "XRPL"
+    ]
+  },
+  "projects": [
+    {
+      "id": 0,
+      "name": "RecipeChain",
+      "emoji": "⛓️",
+      "type": "Blockchain · AI",
+      "year": "2026",
+      "color": "#10b981",
+      "glow": "rgba(16,185,129,0.15)",
+      "summary": "Decentralised AI-powered recipe marketplace solving unfair creator compensation via XRPL micro-payments.",
+      "tools": [
+        "Next.js",
+        "Node.js",
+        "Supabase",
+        "XRPL",
+        "Web3Auth",
+        "TypeScript"
+      ],
+      "github": "https://github.com/pasindusri/recipechain",
+      "live": "https://recipechain.app",
+      "highlights": [
+        "Micro-tipping and recipe NFT monetization on the XRP Ledger",
+        "AI recipe generation and smart nutrition breakdown",
+        "Non-custodial user onboarding via Web3Auth social logins"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "ELearningLKA",
+      "emoji": "📚",
+      "type": "Full-Stack · LMS",
+      "year": "2026-current",
+      "color": "#818cf8",
+      "glow": "rgba(129,140,248,0.15)",
+      "summary": "Scalable LMS with Spring Boot microservices, JWT auth, Cloudinary media, and type-safe Next.js dashboards.",
+      "tools": [
+        "Next.js",
+        "Spring Boot",
+        "PostgreSQL",
+        "JWT",
+        "Cloudinary",
+        "Java"
+      ],
+      "github": "https://github.com/pasindusri/elearninglka",
+      "live": "https://elearninglka.com",
+      "highlights": [
+        "Spring Boot backend with stateless JWT role-based security",
+        "Cloudinary integration for video lessons and course material delivery",
+        "Dynamic student progress tracking and automated quiz grading"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "AirSense",
+      "emoji": "🌬️",
+      "type": "IoT · Hardware",
+      "year": "2025",
+      "color": "#f59e0b",
+      "glow": "rgba(245,158,11,0.15)",
+      "summary": "ESP32-based CO₂ monitor with audio alerts via DFPlayer Mini, Wi-Fi status, and custom enclosure.",
+      "tools": [
+        "ESP32",
+        "C",
+        "MH-Z19C",
+        "DFPlayer Mini"
+      ],
+      "github": "https://github.com/pasindusri/airsense-iot",
+      "live": "https://innoviot.sliit.lk",
+      "highlights": [
+        "Precision NDIR CO₂ gas detection calibrated in C firmware",
+        "Real-time audio warning triggers with voice feedback",
+        "Standalone embedded hardware system with custom enclosure"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Moratuwa",
+      "degree": "BSc IT (Hons)",
+      "year": "2024–Present",
+      "details": "Faculty of Information Technology"
+    },
+    {
+      "institution": "Ananda College, Colombo 10",
+      "degree": "GCE A/L — Physical Science",
+      "year": "2022/23",
+      "details": "Z-Score: 1.8063"
+    },
+    {
+      "institution": "Kotapola National School",
+      "degree": "GCE O/L",
+      "year": "2019",
+      "details": "6 As"
+    }
+  ]
+}

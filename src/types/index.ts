@@ -35,6 +35,40 @@ export interface ContactMessage {
   createdAt: string;
 }
 
+export interface PersonalInfo {
+  name: string;
+  shortName: string;
+  title: string;
+  tagline: string;
+  location: string;
+  email: string;
+  phone: string;
+  linkedin: string;
+  github: string;
+  internshipStatus: string;
+  achievement: string;
+  languages: string[];
+  avatar: string;
+  resumeUrl: string;
+}
+
+export interface CategorizedStack {
+  languages: string[];
+  frontend: string[];
+  backend: string[];
+  databases: string[];
+  tools: string[];
+}
+
+export interface PortfolioData {
+  personalInfo: PersonalInfo;
+  skills: Skill[];
+  stack: string[];
+  categorizedStack?: CategorizedStack;
+  projects: Project[];
+  education: Education[];
+}
+
 export interface PortfolioStats {
   projectsCount: number;
   skillsCount: number;
@@ -43,3 +77,4 @@ export interface PortfolioStats {
   messagesReceived: number;
   totalViews: number;
 }
+

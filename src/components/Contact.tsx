@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PERSONAL_INFO } from "@/data/portfolio";
+import { usePortfolio } from "@/context/PortfolioContext";
 import {
   Check,
   Copy,
@@ -15,6 +15,7 @@ import {
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
 export default function Contact() {
+  const { personalInfo } = usePortfolio();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +28,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    navigator.clipboard.writeText(personalInfo.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2200);
   };
@@ -223,7 +224,7 @@ export default function Contact() {
                 Direct Email
               </div>
               <div className="text-lg font-mono text-white font-medium break-all">
-                {PERSONAL_INFO.email}
+                {personalInfo.email}
               </div>
               <button
                 onClick={copyEmail}
@@ -247,7 +248,7 @@ export default function Contact() {
             {/* Direct Channels */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <a
-                href={PERSONAL_INFO.linkedin}
+                href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-hover
@@ -265,7 +266,7 @@ export default function Contact() {
               </a>
 
               <a
-                href={PERSONAL_INFO.github}
+                href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-hover
@@ -283,7 +284,7 @@ export default function Contact() {
               </a>
 
               <a
-                href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, "")}`}
+                href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`}
                 data-hover
                 className="p-4 rounded-xl bg-white/[0.02] border border-white/8 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] transition-all flex items-center gap-3"
               >
@@ -293,13 +294,13 @@ export default function Contact() {
                 <div>
                   <div className="text-xs font-mono text-zinc-400">Mobile Phone</div>
                   <div className="text-xs text-zinc-200 font-semibold mt-0.5">
-                    {PERSONAL_INFO.phone}
+                    {personalInfo.phone}
                   </div>
                 </div>
               </a>
 
               <a
-                href="/api/resume"
+                href={personalInfo.resumeUrl || "/api/resume"}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-hover

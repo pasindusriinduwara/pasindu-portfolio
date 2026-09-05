@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PROJECTS } from "@/data/portfolio";
+import { getPortfolioData } from "@/lib/portfolioStore";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const tool = searchParams.get("tool");
   const query = searchParams.get("q");
 
-  let filtered = [...PROJECTS];
+  const portfolio = getPortfolioData();
+  let filtered = [...portfolio.projects];
 
   if (tool) {
     filtered = filtered.filter((p) =>

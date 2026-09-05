@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PERSONAL_INFO } from "@/data/portfolio";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { usePathname } from "next/navigation";
 import { Download, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
@@ -16,6 +17,12 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { personalInfo } = usePortfolio();
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +108,7 @@ export default function Navbar() {
           </a>
 
           <a
-            href={PERSONAL_INFO.github}
+            href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
             data-hover
@@ -112,7 +119,7 @@ export default function Navbar() {
           </a>
 
           <a
-            href={PERSONAL_INFO.linkedin}
+            href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             data-hover

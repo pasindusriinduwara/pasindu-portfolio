@@ -1,35 +1,112 @@
 "use client";
 
-import { useState } from "react";
-import { SKILLS, STACK } from "@/data/portfolio";
-import { Code2, Cpu, Database, Globe, Layers } from "lucide-react";
-
-const CATEGORIES = [
-  { id: "all", label: "All Technologies" },
-  { id: "frontend", label: "Frontend" },
-  { id: "backend", label: "Backend" },
-  { id: "database", label: "Data & Cloud" },
-  { id: "web3", label: "Web3 & IoT" },
-];
-
-const CATEGORY_MAP: Record<string, string[]> = {
-  frontend: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"],
-  backend: ["Java", "Spring Boot", "Node.js", "Express", "JWT", "C"],
-  database: ["PostgreSQL", "MySQL", "Supabase", "Cloudinary", "Git"],
-  web3: ["XRPL", "Web3Auth", "C"],
-};
+import React from "react";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { Hexagon, Settings, Disc } from "lucide-react";
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const { data, personalInfo } = usePortfolio();
 
-  const filteredStack =
-    activeCategory === "all"
-      ? STACK
-      : STACK.filter((tool) =>
-          CATEGORY_MAP[activeCategory]?.some(
-            (item) => item.toLowerCase() === tool.toLowerCase()
-          )
-        );
+  // Helper to get category items from categorizedStack with default fallback
+  const getCategoryItems = (catId: string, defaultItems: string[]) => {
+    const cs = data.categorizedStack as Record<string, string[]> | undefined;
+    if (cs && Array.isArray(cs[catId])) {
+      return cs[catId];
+    }
+    return defaultItems;
+  };
+
+  const CATEGORIES = [
+    {
+      id: "languages",
+      title: "LANGUAGES",
+      icon: (
+        <span className="font-mono text-sm font-bold text-[#6875f5] tracking-tight">
+          {`{ }`}
+        </span>
+      ),
+      titleColor: "text-[#6875f5]",
+      bgColor: "bg-[#0b0d22]/80",
+      borderColor: "border-[#252b66]/60 hover:border-[#384094]/80",
+      glowColor: "shadow-[0_4px_30px_rgba(43,47,107,0.15)]",
+      hasDot: true,
+      defaultItems: ["Java", "TypeScript", "JavaScript", "C"],
+      gridClass: "col-span-1",
+    },
+    {
+      id: "frontend",
+      title: "FRONTEND",
+      icon: <Hexagon className="w-4 h-4 text-[#22d3ee] stroke-[2.2]" />,
+      titleColor: "text-[#22d3ee]",
+      bgColor: "bg-[#06151f]/80",
+      borderColor: "border-[#14475e]/60 hover:border-[#206889]/80",
+      glowColor: "shadow-[0_4px_30px_rgba(20,71,94,0.15)]",
+      defaultItems: ["React", "Next.js", "Tailwind CSS"],
+      gridClass: "col-span-1",
+    },
+    {
+      id: "backend",
+      title: "BACKEND",
+      icon: <Settings className="w-4 h-4 text-[#34d399] stroke-[2.2]" />,
+      titleColor: "text-[#34d399]",
+      bgColor: "bg-[#071813]/80",
+      borderColor: "border-[#13543e]/60 hover:border-[#1e7c5c]/80",
+      glowColor: "shadow-[0_4px_30px_rgba(19,84,62,0.15)]",
+      defaultItems: ["Node.js", "Express.js", "Spring Boot", "Spring Security"],
+      gridClass: "col-span-1",
+    },
+  ];
+
+  const SECOND_ROW_CATEGORIES = [
+    {
+      id: "databases",
+      title: "DATABASES",
+      icon: (
+        <svg
+          className="w-4 h-4 text-[#f59e0b]"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 2L2 12l10 10 10-10L12 2z" />
+          <path d="M12 7l-5 5 5 5 5-5-5-5z" fill="currentColor" fillOpacity="0.2" />
+        </svg>
+      ),
+      titleColor: "text-[#f59e0b]",
+      bgColor: "bg-[#171206]/80",
+      borderColor: "border-[#523b0f]/60 hover:border-[#7d5917]/80",
+      glowColor: "shadow-[0_4px_30px_rgba(82,59,15,0.15)]",
+      defaultItems: ["PostgreSQL", "MySQL", "Supabase"],
+      gridClass: "md:col-span-5",
+    },
+    {
+      id: "tools",
+      title: "TOOLS & PLATFORMS",
+      icon: <Disc className="w-4 h-4 text-[#c084fc] stroke-[2.2]" />,
+      titleColor: "text-[#c084fc]",
+      bgColor: "bg-[#140b22]/80",
+      borderColor: "border-[#482070]/60 hover:border-[#6f32ad]/80",
+      glowColor: "shadow-[0_4px_30px_rgba(72,32,112,0.15)]",
+      defaultItems: ["Git", "GitHub", "Cloudinary", "Web3Auth", "XRPL"],
+      gridClass: "md:col-span-7",
+    },
+  ];
+
+  // Spoken languages parser
+  const languagesList = Array.isArray(personalInfo.languages)
+    ? personalInfo.languages
+    : ["English", "Sinhala"];
+
+  const languageFlags: Record<string, string> = {
+    english: "GB",
+    sinhala: "LK",
+    french: "FR",
+    german: "DE",
+    japanese: "JP",
+  };
 
   return (
     <section
@@ -38,126 +115,116 @@ export default function Skills() {
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-4 font-mono text-xs uppercase tracking-widest text-indigo-400">
-          02 / Skills & Toolkit
+        <div className="mb-3 font-mono text-xs uppercase tracking-widest text-[#7c82fb]">
+          02 / SKILLS
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* LEFT: Core Skill Proficiencies */}
-          <div className="lg:col-span-6">
-            <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-8">
-              Core <span className="text-indigo-400">Proficiencies</span>
-            </h2>
+        {/* Section Title */}
+        <h2 className="font-display text-5xl sm:text-6xl font-extrabold tracking-tight text-white mb-10">
+          My <span className="text-[#6875f5]">stack</span>
+        </h2>
 
-            <div className="space-y-5">
-              {SKILLS.map((skill) => (
-                <div key={skill.label} className="group">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-zinc-200 group-hover:text-indigo-300 transition-colors">
-                      {skill.label}
-                    </span>
-                    <span className="font-mono text-xs text-zinc-500 group-hover:text-indigo-400 transition-colors">
-                      {skill.level}%
+        {/* TOP ROW: 3 Cards (Languages, Frontend, Backend) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {CATEGORIES.map((cat) => {
+            const items = getCategoryItems(cat.id, cat.defaultItems);
+            return (
+              <div
+                key={cat.id}
+                className={`relative rounded-2xl p-6 ${cat.bgColor} border ${cat.borderColor} ${cat.glowColor} backdrop-blur-md transition-all duration-300 flex flex-col justify-between`}
+              >
+                <div>
+                  {/* Card Header */}
+                  <div className="flex items-center gap-2.5 mb-6">
+                    {cat.icon}
+                    <span
+                      className={`font-mono text-xs font-bold tracking-wider ${cat.titleColor}`}
+                    >
+                      {cat.title}
                     </span>
                   </div>
 
-                  {/* Progress Track */}
-                  <div className="h-2 w-full bg-white/[0.06] rounded-full overflow-hidden p-[1px]">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-indigo-600 via-indigo-400 to-emerald-400 transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(99,102,241,0.4)]"
-                      style={{ width: `${skill.level}%` }}
-                    />
+                  {/* Tech Chips */}
+                  <div className="flex flex-wrap gap-2.5">
+                    {items.map((tool) => (
+                      <span
+                        key={tool}
+                        className="px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-zinc-200 text-sm font-medium hover:border-white/20 hover:bg-white/[0.07] hover:text-white transition-all cursor-default shadow-sm"
+                      >
+                        {tool}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* RIGHT: Complete Tech Stack with Interactive Category Filter */}
-          <div className="lg:col-span-6">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-                Full <span className="text-emerald-400">Toolkit</span>
-              </h2>
-            </div>
+                {/* Dot accent on Languages card */}
+                {cat.hasDot && (
+                  <div className="self-end mt-4">
+                    <div className="w-4 h-4 rounded-full bg-[#6875f5] shadow-[0_0_12px_#6875f5]" />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  data-hover
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                    activeCategory === cat.id
-                      ? "bg-indigo-600/30 text-white border border-indigo-500/50 shadow-[0_0_12px_rgba(99,102,241,0.25)]"
-                      : "bg-white/[0.03] text-zinc-400 border border-white/8 hover:text-white hover:bg-white/[0.06]"
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Tags Cloud */}
-            <div className="flex flex-wrap gap-2.5 mb-8">
-              {filteredStack.map((tool, idx) => {
-                const isPurple = idx % 3 === 0;
-                const isGreen = idx % 3 === 1;
-
-                return (
+        {/* SECOND ROW: 2 Cards (Databases & Tools) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 mt-5">
+          {SECOND_ROW_CATEGORIES.map((cat) => {
+            const items = getCategoryItems(cat.id, cat.defaultItems);
+            return (
+              <div
+                key={cat.id}
+                className={`${cat.gridClass} relative rounded-2xl p-6 ${cat.bgColor} border ${cat.borderColor} ${cat.glowColor} backdrop-blur-md transition-all duration-300`}
+              >
+                {/* Card Header */}
+                <div className="flex items-center gap-2.5 mb-6">
+                  {cat.icon}
                   <span
-                    key={tool}
-                    data-hover
-                    className={`font-mono text-xs px-3.5 py-1.5 rounded-lg border transition-all duration-200 cursor-default hover:scale-105 ${
-                      isPurple
-                        ? "bg-indigo-500/10 text-indigo-300 border-indigo-500/25 hover:border-indigo-400 hover:shadow-[0_0_12px_rgba(99,102,241,0.3)]"
-                        : isGreen
-                        ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/25 hover:border-emerald-400 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]"
-                        : "bg-amber-500/10 text-amber-300 border-amber-500/25 hover:border-amber-400 hover:shadow-[0_0_12px_rgba(245,158,11,0.3)]"
-                    }`}
+                    className={`font-mono text-xs font-bold tracking-wider ${cat.titleColor}`}
                   >
-                    {tool}
+                    {cat.title}
                   </span>
-                );
-              })}
-            </div>
+                </div>
 
-            {/* Competency Highlights */}
-            <div className="grid grid-cols-2 gap-3.5">
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/8 flex items-start gap-3">
-                <Globe className="w-4 h-4 text-indigo-400 shrink-0 mt-1" />
-                <div>
-                  <div className="text-xs font-semibold text-zinc-200">Full-Stack Web</div>
-                  <div className="text-[11px] text-zinc-400 mt-0.5">Next.js, React 19, REST APIs</div>
+                {/* Tech Chips */}
+                <div className="flex flex-wrap gap-2.5">
+                  {items.map((tool) => (
+                    <span
+                      key={tool}
+                      className="px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-zinc-200 text-sm font-medium hover:border-white/20 hover:bg-white/[0.07] hover:text-white transition-all cursor-default shadow-sm"
+                    >
+                      {tool}
+                    </span>
+                  ))}
                 </div>
               </div>
+            );
+          })}
+        </div>
 
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/8 flex items-start gap-3">
-                <Layers className="w-4 h-4 text-emerald-400 shrink-0 mt-1" />
-                <div>
-                  <div className="text-xs font-semibold text-zinc-200">Enterprise Backend</div>
-                  <div className="text-[11px] text-zinc-400 mt-0.5">Spring Boot, Java, JWT Auth</div>
-                </div>
-              </div>
+        {/* BOTTOM ROW: Spoken Languages Bar */}
+        <div className="mt-5 w-full rounded-2xl bg-[#080811]/90 border border-white/[0.08] p-5 flex flex-wrap items-center gap-3.5 backdrop-blur-md">
+          <span className="font-mono text-xs font-semibold tracking-widest text-zinc-500 uppercase mr-2">
+            SPOKEN
+          </span>
 
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/8 flex items-start gap-3">
-                <Database className="w-4 h-4 text-purple-400 shrink-0 mt-1" />
-                <div>
-                  <div className="text-xs font-semibold text-zinc-200">Databases & Storage</div>
-                  <div className="text-[11px] text-zinc-400 mt-0.5">PostgreSQL, Supabase, Cloudinary</div>
-                </div>
+          {languagesList.map((lang) => {
+            const countryCode =
+              languageFlags[lang.toLowerCase()] ||
+              lang.substring(0, 2).toUpperCase();
+            return (
+              <div
+                key={lang}
+                className="px-3.5 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 text-zinc-200 text-sm font-medium flex items-center gap-2 hover:border-white/20 transition-all cursor-default"
+              >
+                <span className="text-[10px] font-mono font-bold text-zinc-400 bg-white/10 px-1.5 py-0.5 rounded">
+                  {countryCode}
+                </span>
+                <span>{lang}</span>
               </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/8 flex items-start gap-3">
-                <Cpu className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
-                <div>
-                  <div className="text-xs font-semibold text-zinc-200">Web3 & Embedded</div>
-                  <div className="text-[11px] text-zinc-400 mt-0.5">XRPL, Web3Auth, ESP32 (C)</div>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ export const PERSONAL_INFO = {
   linkedin: "https://linkedin.com/in/pasindusri",
   github: "https://github.com/pasindusri",
   internshipStatus: "Available for internship",
-  achievement: "Finalist — InnovIOT 2025, SLIIT CODEFEST",
+  achievement: "Full-Stack Web, XRPL Blockchain & IoT Systems",
   languages: ["English", "Sinhala"],
   avatar: "/images/profile.jpg",
   resumeUrl: "/api/resume",
@@ -30,23 +30,24 @@ export const SKILLS: Skill[] = [
 
 export const STACK = [
   "Java",
-  "JavaScript",
   "TypeScript",
+  "JavaScript",
   "C",
   "React",
   "Next.js",
+  "Tailwind CSS",
   "Node.js",
-  "Express",
+  "Express.js",
   "Spring Boot",
-  "JWT",
+  "Spring Security",
   "PostgreSQL",
   "MySQL",
   "Supabase",
   "Git",
+  "GitHub",
   "Cloudinary",
   "Web3Auth",
   "XRPL",
-  "Tailwind CSS",
 ];
 
 export const PROJECTS: Project[] = [
@@ -104,7 +105,7 @@ export const PROJECTS: Project[] = [
     highlights: [
       "Precision NDIR CO₂ gas detection calibrated in C firmware",
       "Real-time audio warning triggers with voice feedback",
-      "Awarded Finalist at SLIIT CODEFEST InnovIOT 2025",
+      "Standalone embedded hardware system with custom enclosure",
     ],
   },
 ];

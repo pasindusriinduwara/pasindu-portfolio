@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { PERSONAL_INFO, PROJECTS, STACK } from "@/data/portfolio";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { ArrowDown, Check, Copy, Download, Sparkles } from "lucide-react";
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
+  const { personalInfo, projects, stack, education } = usePortfolio();
 
   const copyEmail = () => {
-    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    navigator.clipboard.writeText(personalInfo.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2200);
   };
@@ -18,6 +19,12 @@ export default function Hero() {
     const el = document.getElementById(id);
     el?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Extract name parts for display
+  const nameParts = personalInfo.name.split(" ");
+  const firstName = nameParts[0] || "Pasindu";
+  const middleName = nameParts.length > 2 ? nameParts[1] : personalInfo.shortName.split(" ")[1] || "Sri";
+  const lastName = nameParts[nameParts.length - 1] || "Madhushan";
 
   return (
     <section
@@ -34,32 +41,29 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-medium">
-              {PERSONAL_INFO.internshipStatus}
+              {personalInfo.internshipStatus}
             </span>
           </div>
 
           {/* Heading */}
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.98] mb-6 text-white">
-            Pasindu <br />
+            {firstName} <br />
             <span
               style={{
                 WebkitTextStroke: "1.5px rgba(99,102,241,0.6)",
                 color: "transparent",
               }}
             >
-              Sri
+              {middleName}
             </span>{" "}
             <span className="text-indigo-500 drop-shadow-[0_0_24px_rgba(99,102,241,0.35)]">
-              Madhushan
+              {lastName}
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg text-zinc-400 font-light leading-relaxed max-w-xl mb-8">
-            IT undergraduate at{" "}
-            <span className="text-zinc-200 font-medium">University of Moratuwa</span>{" "}
-            engineering high-performance full-stack web applications, blockchain
-            integrations on XRPL, and responsive IoT systems.
+            {personalInfo.tagline}
           </p>
 
           {/* Action Buttons */}
@@ -86,13 +90,13 @@ export default function Hero() {
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>{PERSONAL_INFO.email}</span>
+                  <span>{personalInfo.email}</span>
                 </>
               )}
             </button>
 
             <a
-              href="/api/resume"
+              href={personalInfo.resumeUrl || "/api/resume"}
               target="_blank"
               rel="noopener noreferrer"
               data-hover
@@ -107,7 +111,7 @@ export default function Hero() {
           <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/8 max-w-lg">
             <div>
               <div className="font-display text-2xl sm:text-3xl font-bold text-indigo-400">
-                {PROJECTS.length}+
+                {projects.length}+
               </div>
               <div className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 mt-1">
                 Featured Projects
@@ -116,7 +120,7 @@ export default function Hero() {
 
             <div>
               <div className="font-display text-2xl sm:text-3xl font-bold text-emerald-400">
-                {STACK.length}+
+                {stack.length}+
               </div>
               <div className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 mt-1">
                 Tech Stack Tools
@@ -125,11 +129,11 @@ export default function Hero() {
 
             <div>
               <div className="font-display text-2xl sm:text-3xl font-bold text-amber-400 flex items-center gap-1">
-                2025
-                <Sparkles className="w-4 h-4 text-amber-400 inline" />
+                BSc IT
+                <Sparkles className="w-3.5 h-3.5 text-amber-400 inline" />
               </div>
               <div className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 mt-1">
-                InnovIOT Finalist
+                Univ of Moratuwa
               </div>
             </div>
           </div>
@@ -159,7 +163,7 @@ export default function Hero() {
 
           {/* Floating Skill Chips Top */}
           <div className="absolute top-2 flex items-center gap-2 z-20">
-            {["Next.js", "Spring Boot", "XRPL"].map((tech) => (
+            {stack.slice(0, 3).map((tech) => (
               <span
                 key={tech}
                 className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0a0a14]/90 border border-white/10 text-zinc-400 backdrop-blur-md shadow-md"
@@ -174,8 +178,8 @@ export default function Hero() {
             <div className="w-full h-full rounded-full overflow-hidden bg-[#050508] relative">
               <div className="w-full h-full relative animate-spin-fast-reverse">
                 <Image
-                  src={PERSONAL_INFO.avatar}
-                  alt={PERSONAL_INFO.name}
+                  src={personalInfo.avatar || "/images/profile.jpg"}
+                  alt={personalInfo.name}
                   fill
                   sizes="(max-width: 768px) 256px, 288px"
                   priority
@@ -185,13 +189,13 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Floating Achievement Badge */}
-          <div className="absolute -bottom-2 z-20 bg-[#0a0a14]/90 backdrop-blur-md border border-indigo-500/30 rounded-xl px-4 py-2.5 shadow-xl text-center">
-            <div className="font-mono text-xs font-semibold text-emerald-400 tracking-wider">
-              🏆 SLIIT CODEFEST 2025
+          {/* Floating University of Moratuwa Badge */}
+          <div className="absolute -bottom-4 z-20 bg-[#070914]/95 backdrop-blur-md border border-[#2b2f6b]/60 rounded-2xl px-6 py-3 shadow-2xl text-center">
+            <div className="font-mono text-xs font-semibold text-[#7c82fb] tracking-wider">
+              {education[0]?.institution || "University of Moratuwa"}
             </div>
-            <div className="font-mono text-[11px] text-zinc-400 mt-0.5">
-              InnovIOT Finalist
+            <div className="font-mono text-[11px] text-zinc-400 mt-1">
+              {education[0]?.degree || "BSc (Hons) IT"} · {education[0]?.year || "2024–Present"}
             </div>
           </div>
         </div>

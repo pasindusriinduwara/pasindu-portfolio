@@ -1,32 +1,40 @@
-import { PERSONAL_INFO, EDUCATION } from "@/data/portfolio";
+"use client";
+
+import { usePortfolio } from "@/context/PortfolioContext";
 import { GraduationCap, MapPin, Award, Languages, Handshake, Download } from "lucide-react";
 
 export default function About() {
+  const { personalInfo, education } = usePortfolio();
+
+  const primaryEdu = education[0]
+    ? `${education[0].degree} · ${education[0].institution}, ${education[0].year}`
+    : "BSc (Hons) IT · University of Moratuwa, 2024–Present";
+
   const INFO_CARDS = [
     {
       icon: <GraduationCap className="w-4 h-4 text-indigo-400" />,
       label: "Education",
-      val: "BSc (Hons) IT · University of Moratuwa, 2024–Present",
+      val: primaryEdu,
     },
     {
       icon: <MapPin className="w-4 h-4 text-emerald-400" />,
       label: "Location",
-      val: PERSONAL_INFO.location,
+      val: personalInfo.location,
     },
     {
       icon: <Award className="w-4 h-4 text-amber-400" />,
-      label: "Achievement",
-      val: PERSONAL_INFO.achievement,
+      label: "Specialization",
+      val: personalInfo.achievement,
     },
     {
       icon: <Languages className="w-4 h-4 text-purple-400" />,
       label: "Languages",
-      val: PERSONAL_INFO.languages.join(" · "),
+      val: Array.isArray(personalInfo.languages) ? personalInfo.languages.join(" · ") : personalInfo.languages,
     },
     {
       icon: <Handshake className="w-4 h-4 text-cyan-400" />,
-      label: "Seeking",
-      val: "Software Engineering Internship",
+      label: "Status / Seeking",
+      val: personalInfo.internshipStatus,
     },
   ];
 
@@ -115,11 +123,11 @@ export default function About() {
               </div>
 
               <div className="space-y-3.5">
-                {EDUCATION.map((edu, idx) => (
+                {education.map((edu, idx) => (
                   <div
-                    key={edu.institution}
+                    key={`${edu.institution}-${idx}`}
                     className={`flex items-start justify-between pb-3 ${
-                      idx < EDUCATION.length - 1 ? "border-b border-white/5" : ""
+                      idx < education.length - 1 ? "border-b border-white/5" : ""
                     }`}
                   >
                     <div>
