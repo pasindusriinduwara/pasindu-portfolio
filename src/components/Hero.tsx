@@ -21,10 +21,10 @@ export default function Hero() {
   };
 
   // Extract name parts for display
-  const nameParts = personalInfo.name.split(" ");
+  const nameParts = personalInfo.name.split(" ").filter(Boolean);
   const firstName = nameParts[0] || "Pasindu";
-  const middleName = nameParts.length > 2 ? nameParts[1] : personalInfo.shortName.split(" ")[1] || "Sri";
-  const lastName = nameParts[nameParts.length - 1] || "Madhushan";
+  const middleName = nameParts.length >= 3 ? nameParts[1] : (personalInfo.shortName.split(" ")[1] || "Sri");
+  const lastName = nameParts.length >= 3 ? nameParts.slice(2).join(" ") : (nameParts[1] || "Induwara");
 
   return (
     <section

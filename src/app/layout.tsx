@@ -27,12 +27,12 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pasindusri.dev"),
-  title: "Pasindu Sri Madhushan | Full-Stack Software Engineer & IT Undergraduate",
+  title: "Pasindu Sri Induwara | Full-Stack Software Engineer & IT Undergraduate",
   description:
-    "Portfolio of Pasindu Sri Induwara Madhushan, IT undergraduate at University of Moratuwa specializing in full-stack web development (Next.js, Spring Boot), XRPL blockchain integrations, and IoT systems.",
+    "Portfolio of Pasindu Sri Induwara, IT undergraduate at University of Moratuwa specializing in full-stack web development (Next.js, Spring Boot), XRPL blockchain integrations, and IoT systems.",
   keywords: [
     "Pasindu Sri",
-    "Pasindu Sri Madhushan",
+    "Pasindu Sri Induwara",
     "University of Moratuwa",
     "Full-Stack Developer",
     "Next.js Developer",
@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     "IoT",
     "Sri Lanka Software Engineer",
   ],
-  authors: [{ name: "Pasindu Sri Madhushan" }],
-  creator: "Pasindu Sri Madhushan",
+  authors: [{ name: "Pasindu Sri Induwara" }],
+  creator: "Pasindu Sri Induwara",
   openGraph: {
-    title: "Pasindu Sri Madhushan | Full-Stack Software Engineer",
+    title: "Pasindu Sri Induwara | Full-Stack Software Engineer",
     description:
       "IT undergrad at University of Moratuwa building full-stack web apps, blockchain integrations, and IoT systems.",
     url: "https://pasindusri.dev",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         url: "/images/profile.jpg",
         width: 800,
         height: 800,
-        alt: "Pasindu Sri Madhushan",
+        alt: "Pasindu Sri Induwara",
       },
     ],
     locale: "en_US",

@@ -1,7 +1,7 @@
 import { Skill, Project, Education } from "@/types";
 
 export const PERSONAL_INFO = {
-  name: "Pasindu Sri Induwara Madhushan",
+  name: "Pasindu Sri Induwara",
   shortName: "Pasindu Sri",
   title: "Full-Stack Software Engineer & IT Undergraduate",
   tagline: "IT undergrad at University of Moratuwa building full-stack web apps, blockchain integrations, and IoT systems.",
